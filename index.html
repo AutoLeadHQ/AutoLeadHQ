@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoLeadHQ | Stop Losing HVAC Jobs From Missed Calls</title>
+  <meta name="description" content="AutoLeadHQ helps HVAC companies recover missed calls and turn them into booked jobs automatically." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #131a2e;
+      --card-2: #0f1527;
+      --text: #f5f7fb;
+      --muted: #b8c0d4;
+      --accent: #5eead4;
+      --accent-2: #22c55e;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(94,234,212,0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(34,197,94,0.12), transparent 28%),
+        linear-gradient(180deg, #09101f 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,0.78);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 10;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.15rem;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 82px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid rgba(94,234,212,0.18);
+      border-radius: 999px;
+      background: rgba(94,234,212,0.07);
+      color: #c6fff5;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 4.8vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 0 0 18px;
+      max-width: 700px;
+    }
+
+    .gradient {
+      background: linear-gradient(135deg, var(--accent), #9af7e7 48%, #86efac 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 660px;
+      margin-bottom: 28px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 16px;
+      font-weight: 700;
+      transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #6ee7b7);
+      color: #081018;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: none;
+    }
+
+    .micro {
+      color: #8ea0c6;
+      font-size: 0.92rem;
+    }
+
+    .hero-card,
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 24px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(8,12,24,0.72);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mini small {
+      display: block;
+      color: #91a1c4;
+      margin-bottom: 8px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .sms {
+      background: rgba(94,234,212,0.08);
+      border: 1px solid rgba(94,234,212,0.16);
+    }
+
+    section {
+      padding: 24px 0 72px;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin: 0 0 12px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .steps {
+      counter-reset: item;
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .num {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--accent), #7dd3fc);
+      color: #0a111b;
+      font-weight: 800;
+    }
+
+    .form-wrap {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: #d7deef;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 14px 15px;
+      background: rgba(7,10,20,0.8);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder { color: #8090b2; }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(94,234,212,0.42);
+      box-shadow: 0 0 0 4px rgba(94,234,212,0.08);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-note {
+      color: #8ea0c6;
+      font-size: 0.9rem;
+    }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 16px 18px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    details p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 24px 0 48px;
+      color: #90a0c1;
+      font-size: 0.95rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: #d8e0f0;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .form-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(var(--max), calc(100% - 20px)); }
+      .nav-inner { padding: 12px 0; }
+      .hero-card, .card { padding: 18px; }
+      .btn { width: 100%; }
+      .cta-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">AutoLead<span>HQ</span></div>
+      <a class="nav-cta" href="#signup">Start Setup</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Built for HVAC companies that want more booked jobs</div>
+        <h1>Stop losing <span class="gradient">HVAC jobs</span> from missed calls.</h1>
+        <p class="lead">
+          When someone calls and nobody answers, that customer usually moves on to the next company.
+          AutoLeadHQ helps you recover those missed opportunities automatically.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#signup">Get Started</a>
+          <a class="btn btn-secondary" href="#how-it-works">See How It Works</a>
+        </div>
+        <div class="micro">No extra staff. No extra ad spend. Just more chances to turn missed calls into booked work.</div>
+      </div>
+
+      <div class="hero-card">
+        <div class="stack">
+          <div class="mini">
+            <small>Missed Call</small>
+            <strong>Customer calls for AC repair</strong>
+            Nobody answers because you’re on a job.
+          </div>
+          <div class="mini sms">
+            <small>Instant Follow-Up</small>
+            <strong>Text sent automatically</strong>
+            “Hey — sorry we missed your call. What can we help you with?”
+          </div>
+          <div class="mini">
+            <small>Outcome</small>
+            <strong>You get another shot at the job</strong>
+            Instead of losing the customer to the next HVAC company.
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <h2>The problem is simple.</h2>
+        <p>
+          If a homeowner needs service and your call goes unanswered, they rarely wait around.
+          They call the next number on Google. That means lost revenue from leads you already paid to attract.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Missed calls turn into missed revenue</h3>
+          <p>Most customers want help now. If they don’t hear back quickly, they move on fast.</p>
+        </div>
+        <div class="card">
+          <h3>After-hours leads are easy to lose</h3>
+          <p>Calls after 5pm, during weekends, or while you’re on-site can disappear before you ever see them.</p>
+        </div>
+        <div class="card">
+          <h3>Slow follow-up kills close rates</h3>
+          <p>Even interested leads go cold when there’s no immediate response.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <h2>How AutoLeadHQ works.</h2>
+        <p>
+          We add a simple lead recovery layer to your business so missed calls can still turn into real conversations.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <h3>Calls route through the system</h3>
+                <p>Your calls run through a business line setup so missed calls can be detected automatically.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <h3>Missed calls trigger instant follow-up</h3>
+                <p>The lead gets a fast text back, even if you’re tied up on another job.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <h3>You get a second chance at the booking</h3>
+                <p>The conversation stays alive instead of the lead disappearing to the next company.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>What you actually get</h3>
+          <div class="pill-row">
+            <div class="pill">Missed call follow-up</div>
+            <div class="pill">After-hours response</div>
+            <div class="pill">Lead recovery system</div>
+            <div class="pill">More booked opportunities</div>
+          </div>
+          <p style="margin-top:18px; color: var(--muted);">
+            This is not about selling you software for the sake of software. It’s about helping you stop losing jobs you should have had a real chance to close.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <h2>What this helps you do.</h2>
+        <p>Sell the outcome, not the tool.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Recover leads you would have lost</h3>
+          <p>Get another shot at jobs that normally disappear after one missed call.</p>
+        </div>
+        <div class="card">
+          <h3>Book more work without more ad spend</h3>
+          <p>Improve results from the leads you’re already getting instead of spending more just to replace lost ones.</p>
+        </div>
+        <div class="card">
+          <h3>Respond fast without hiring staff</h3>
+          <p>Give leads an instant response even when you’re busy, driving, or off the clock.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="signup">
+    <div class="container form-wrap">
+      <div>
+        <div class="section-head">
+          <h2>Start setup.</h2>
+          <p>
+            Fill this out and we’ll reach out with the next steps to get your lead recovery system live.
+          </p>
+        </div>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <label>
+            Your name
+            <input type="text" name="name" placeholder="John Smith" required />
+          </label>
+
+          <label>
+            Business name
+            <input type="text" name="business_name" placeholder="Smith HVAC" required />
+          </label>
+
+          <label>
+            Best email
+            <input type="email" name="email" placeholder="owner@company.com" required />
+          </label>
+
+          <label>
+            Best phone number
+            <input type="tel" name="phone" placeholder="(555) 555-5555" required />
+          </label>
+
+          <label>
+            Current setup
+            <select name="current_setup">
+              <option value="Business line separate">Business line separate from personal phone</option>
+              <option value="Business number is personal phone">Business number is my personal phone</option>
+              <option value="Not sure">Not sure</option>
+            </select>
+          </label>
+
+          <label>
+            Anything we should know?
+            <textarea name="notes" placeholder="Optional: tell us how your calls are currently handled."></textarea>
+          </label>
+
+          <button class="btn btn-primary" type="submit">Request Setup</button>
+          <div class="form-note">
+            Replace <strong>YOUR_FORM_ID</strong> in the code with your Formspree form ID so submissions go to your email.
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>What happens after you submit?</h3>
+        <div class="steps" style="margin-top:16px;">
+          <div class="step">
+            <div class="num">1</div>
+            <div>
+              <h3>We review your info</h3>
+              <p>We check your business details and the best way to get your setup live.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <div>
+              <h3>We send next steps</h3>
+              <p>You’ll get a quick email with what’s needed to move forward.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <div>
+              <h3>Your system gets built</h3>
+              <p>Once everything is confirmed, your missed call follow-up system gets set up for you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <h2>Questions business owners usually have.</h2>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Do I need to hire anyone new?</summary>
+          <p>No. The point is to help you respond faster without adding more staff.</p>
+        </details>
+        <details>
+          <summary>Do I need to run more ads?</summary>
+          <p>No. This is about capturing more value from the calls you’re already getting.</p>
+        </details>
+        <details>
+          <summary>Will this work if I’m on a job most of the day?</summary>
+          <p>That’s exactly when it helps most. Leads don’t have to wait for you to become available before hearing back.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      AutoLeadHQ · Recover missed HVAC leads and turn them into more booked jobs.<br />
+      Contact: <a href="mailto:max@autoleadhq.com">max@autoleadhq.com</a>
+    </div>
+  </footer>
+</body>
+</html>
