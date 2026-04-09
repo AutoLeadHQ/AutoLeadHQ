@@ -564,10 +564,10 @@
 
         <!--
           FORM ENDPOINT SETUP:
-          Replace REPLACE_WITH_YOUR_FORM_ID in the form action URL below with your real Formspree ID.
-          Example: https://formspree.io/f/xblyabcd
+          Current Formspree endpoint is configured below.
+          If you ever need to change it, replace the form action URL with your new Formspree endpoint.
         -->
-        <form id="lead-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+        <form id="lead-form" action="https://formspree.io/f/mkoparnv" method="POST">
           <!-- OPTIONAL: Replace this subject line with any email subject you want to receive from Formspree. -->
           <input type="hidden" name="_subject" value="New AutoLeadHQ landing page inquiry" />
 
@@ -663,10 +663,6 @@
           <summary>Will it still help if we are busy on jobs all day?</summary>
           <p>Yes. That is exactly where fast automatic follow-up is most valuable.</p>
         </details>
-        <details>
-          <summary>Can this run on GitHub Pages?</summary>
-          <p>Yes. This page is fully static and uses Formspree for form handling.</p>
-        </details>
       </div>
     </div>
   </section>
@@ -689,6 +685,12 @@
       statusEl.className = 'submit-status';
       statusEl.textContent = '';
 
+      if (form.action.includes('REPLACE_WITH_YOUR_FORM_ID')) {
+        statusEl.textContent = 'Form is not connected yet. Replace REPLACE_WITH_YOUR_FORM_ID with your real Formspree form ID.';
+        statusEl.classList.add('error');
+        return;
+      }
+
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
 
@@ -706,7 +708,16 @@
           statusEl.textContent = 'Thanks — your request was submitted successfully. We will reach out shortly.';
           statusEl.classList.add('success');
         } else {
-          statusEl.textContent = 'We could not submit your request right now. Please try again or email us directly.';
+          let errorMessage = 'We could not submit your request right now. Please try again or email us directly.';
+          try {
+            const data = await response.json();
+            if (data && Array.isArray(data.errors) && data.errors[0] && data.errors[0].message) {
+              errorMessage = data.errors[0].message;
+            }
+          } catch (_) {
+            // Keep fallback error message if response isn't JSON.
+          }
+          statusEl.textContent = errorMessage;
           statusEl.classList.add('error');
         }
       } catch (error) {
