@@ -3,20 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoLeadHQ | Stop Losing HVAC Jobs From Missed Calls</title>
-  <meta name="description" content="AutoLeadHQ helps HVAC companies recover missed calls and turn them into booked jobs automatically." />
+  <title>AutoLeadHQ | Recover Missed Leads & Book More Local Service Jobs</title>
+  <meta
+    name="description"
+    content="AutoLeadHQ helps local service businesses recover missed leads, respond faster, and book more jobs without adding overhead."
+  />
   <style>
     :root {
-      --bg: #0b1020;
-      --card: #131a2e;
-      --card-2: #0f1527;
-      --text: #f5f7fb;
-      --muted: #b8c0d4;
-      --accent: #5eead4;
-      --accent-2: #22c55e;
-      --border: rgba(255,255,255,0.08);
-      --shadow: 0 20px 50px rgba(0,0,0,0.35);
-      --radius: 22px;
+      --bg: #f6f8fc;
+      --surface: #ffffff;
+      --surface-2: #f2f5fb;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #0f766e;
+      --primary-2: #0e9488;
+      --border: #dce3ef;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
       --max: 1120px;
     }
 
@@ -24,11 +27,8 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(94,234,212,0.14), transparent 30%),
-        radial-gradient(circle at top right, rgba(34,197,94,0.12), transparent 28%),
-        linear-gradient(180deg, #09101f 0%, #0b1020 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 10% -10%, #dff7f3 0, transparent 35%), var(--bg);
       color: var(--text);
       line-height: 1.55;
     }
@@ -43,47 +43,49 @@
     .nav {
       position: sticky;
       top: 0;
-      backdrop-filter: blur(10px);
-      background: rgba(11,16,32,0.78);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      z-index: 10;
+      z-index: 20;
+      background: rgba(246, 248, 252, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
+      padding: 14px 0;
+      gap: 12px;
     }
 
     .brand {
+      font-size: 1.15rem;
       font-weight: 800;
       letter-spacing: -0.03em;
-      font-size: 1.15rem;
     }
 
-    .brand span { color: var(--accent); }
+    .brand span { color: var(--primary); }
 
     .nav-cta {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
+      justify-content: center;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
+      padding: 10px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      font-weight: 600;
       font-size: 0.95rem;
     }
 
     .hero {
-      padding: 82px 0 56px;
+      padding: 76px 0 48px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
       align-items: center;
     }
 
@@ -91,163 +93,146 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 14px;
-      border: 1px solid rgba(94,234,212,0.18);
-      border-radius: 999px;
-      background: rgba(94,234,212,0.07);
-      color: #c6fff5;
-      font-size: 0.92rem;
       margin-bottom: 18px;
+      border: 1px solid #b8ece6;
+      background: #ecfdfa;
+      color: #0f766e;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.92rem;
+      font-weight: 600;
     }
 
     h1 {
-      font-size: clamp(2.4rem, 4.8vw, 4.6rem);
+      margin: 0 0 16px;
+      font-size: clamp(2.2rem, 5vw, 4.1rem);
       line-height: 0.98;
-      letter-spacing: -0.05em;
-      margin: 0 0 18px;
-      max-width: 700px;
-    }
-
-    .gradient {
-      background: linear-gradient(135deg, var(--accent), #9af7e7 48%, #86efac 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      letter-spacing: -0.04em;
+      max-width: 760px;
     }
 
     .lead {
+      margin: 0 0 24px;
       color: var(--muted);
-      font-size: 1.12rem;
-      max-width: 660px;
-      margin-bottom: 28px;
+      font-size: 1.08rem;
+      max-width: 700px;
+    }
+
+    .highlight {
+      color: var(--primary);
     }
 
     .cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 14px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 14px 22px;
-      border-radius: 16px;
-      font-weight: 700;
-      transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
-      box-shadow: var(--shadow);
-      cursor: pointer;
+      gap: 8px;
       border: none;
+      border-radius: 14px;
+      padding: 13px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .btn:hover { transform: translateY(-1px); }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #6ee7b7);
-      color: #081018;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 22px rgba(15, 118, 110, 0.25);
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.04);
       color: var(--text);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
     }
 
     .micro {
-      color: #8ea0c6;
+      color: #64748b;
       font-size: 0.92rem;
     }
 
     .hero-card,
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
-    .hero-card {
-      padding: 24px;
-    }
+    .hero-card { padding: 22px; }
 
     .stack {
       display: grid;
-      gap: 14px;
+      gap: 12px;
     }
 
     .mini {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(8,12,24,0.72);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--surface-2);
+      border: 1px solid #e3e9f3;
+      border-radius: 14px;
+      padding: 15px;
     }
 
     .mini small {
-      display: block;
-      color: #91a1c4;
-      margin-bottom: 8px;
-      font-size: 0.82rem;
       text-transform: uppercase;
+      font-size: 0.78rem;
       letter-spacing: 0.08em;
+      color: #64748b;
+      display: block;
+      margin-bottom: 8px;
     }
 
     .mini strong {
       display: block;
+      margin-bottom: 6px;
       font-size: 1rem;
-      margin-bottom: 8px;
     }
 
-    .sms {
-      background: rgba(94,234,212,0.08);
-      border: 1px solid rgba(94,234,212,0.16);
-    }
-
-    section {
-      padding: 24px 0 72px;
-    }
+    section { padding: 26px 0 66px; }
 
     .section-head {
       max-width: 760px;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
     .section-head h2 {
-      font-size: clamp(1.8rem, 3vw, 3rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      letter-spacing: -0.03em;
+      line-height: 1.06;
     }
 
     .section-head p {
       margin: 0;
       color: var(--muted);
-      font-size: 1.02rem;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
+    .grid-3,
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
 
-    .card {
-      padding: 22px;
-    }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card { padding: 20px; }
 
     .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
     }
 
     .card p {
@@ -256,84 +241,120 @@
     }
 
     .steps {
-      counter-reset: item;
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
     .step {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       align-items: flex-start;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      background: var(--surface-2);
+      border: 1px solid #e3e9f3;
+      padding: 14px;
     }
 
     .num {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
       flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, var(--accent), #7dd3fc);
-      color: #0a111b;
       font-weight: 800;
+      background: linear-gradient(135deg, #14b8a6, #0f766e);
+      color: #ffffff;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      background: #ecfdfa;
+      color: #0f766e;
+      border: 1px solid #b8ece6;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
     }
 
     .form-wrap {
       display: grid;
       grid-template-columns: 1fr 0.9fr;
-      gap: 22px;
+      gap: 18px;
       align-items: start;
     }
 
     form {
       display: grid;
-      gap: 14px;
+      gap: 12px;
     }
 
     label {
       display: grid;
-      gap: 8px;
+      gap: 7px;
       font-size: 0.95rem;
-      color: #d7deef;
+      font-weight: 600;
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 14px 15px;
-      background: rgba(7,10,20,0.8);
+      border-radius: 12px;
+      border: 1px solid #cfd8e7;
+      background: #ffffff;
       color: var(--text);
+      padding: 12px 13px;
       font: inherit;
       outline: none;
     }
 
-    input::placeholder,
-    textarea::placeholder { color: #8090b2; }
-
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: rgba(94,234,212,0.42);
-      box-shadow: 0 0 0 4px rgba(94,234,212,0.08);
+      border-color: #14b8a6;
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.18);
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 108px;
       resize: vertical;
     }
 
-    .form-note {
-      color: #8ea0c6;
+    .form-note,
+    .submit-status {
+      margin: 0;
       font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .submit-status {
+      display: none;
+      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid transparent;
+    }
+
+    .submit-status.success {
+      display: block;
+      color: #14532d;
+      background: #ecfdf3;
+      border-color: #bbf7d0;
+    }
+
+    .submit-status.error {
+      display: block;
+      color: #7f1d1d;
+      background: #fef2f2;
+      border-color: #fecaca;
     }
 
     .faq {
@@ -342,10 +363,10 @@
     }
 
     details {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 16px;
-      padding: 16px 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 14px 16px;
     }
 
     summary {
@@ -354,33 +375,18 @@
     }
 
     details p {
-      margin: 10px 0 0;
+      margin: 9px 0 0;
       color: var(--muted);
     }
 
     .footer {
-      padding: 24px 0 48px;
-      color: #90a0c1;
+      border-top: 1px solid var(--border);
+      padding: 20px 0 36px;
+      color: #64748b;
       font-size: 0.95rem;
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .pill {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-      color: #d8e0f0;
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 920px) {
+    @media (max-width: 930px) {
       .hero-grid,
       .grid-3,
       .grid-2,
@@ -389,16 +395,15 @@
       }
 
       .hero {
-        padding-top: 54px;
+        padding-top: 52px;
       }
     }
 
     @media (max-width: 560px) {
       .container { width: min(var(--max), calc(100% - 20px)); }
-      .nav-inner { padding: 12px 0; }
-      .hero-card, .card { padding: 18px; }
       .btn { width: 100%; }
       .cta-row { flex-direction: column; }
+      .card, .hero-card { padding: 16px; }
     }
   </style>
 </head>
@@ -406,70 +411,70 @@
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">AutoLead<span>HQ</span></div>
-      <a class="nav-cta" href="#signup">Start Setup</a>
+      <a class="nav-cta" href="#signup">Get Started</a>
     </div>
   </nav>
 
   <header class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="eyebrow">Built for HVAC companies that want more booked jobs</div>
-        <h1>Stop losing <span class="gradient">HVAC jobs</span> from missed calls.</h1>
+        <div class="eyebrow">Built for local service businesses that rely on inbound calls</div>
+        <h1>Recover missed leads, respond faster, and <span class="highlight">book more jobs</span>.</h1>
         <p class="lead">
-          When someone calls and nobody answers, that customer usually moves on to the next company.
-          AutoLeadHQ helps you recover those missed opportunities automatically.
+          When a call goes unanswered, most customers contact the next company. AutoLeadHQ helps you follow up quickly
+          so your business stays in the conversation and wins more of the jobs you already worked hard to attract.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#signup">Get Started</a>
-          <a class="btn btn-secondary" href="#how-it-works">See How It Works</a>
+          <a class="btn btn-primary" href="#signup">Start Setup</a>
+          <a class="btn btn-secondary" href="#how-it-works">How It Works</a>
         </div>
-        <div class="micro">No extra staff. No extra ad spend. Just more chances to turn missed calls into booked work.</div>
+        <div class="micro">Designed for teams in HVAC, plumbing, roofing, electrical, junk removal, and similar service trades.</div>
       </div>
 
       <div class="hero-card">
         <div class="stack">
           <div class="mini">
-            <small>Missed Call</small>
-            <strong>Customer calls for AC repair</strong>
-            Nobody answers because you’re on a job.
-          </div>
-          <div class="mini sms">
-            <small>Instant Follow-Up</small>
-            <strong>Text sent automatically</strong>
-            “Hey — sorry we missed your call. What can we help you with?”
+            <small>Incoming lead</small>
+            <strong>Customer needs urgent service</strong>
+            The call comes in while your team is on-site or after hours.
           </div>
           <div class="mini">
-            <small>Outcome</small>
-            <strong>You get another shot at the job</strong>
-            Instead of losing the customer to the next HVAC company.
+            <small>Immediate response</small>
+            <strong>Fast follow-up is sent automatically</strong>
+            The lead gets a prompt message instead of silence.
+          </div>
+          <div class="mini">
+            <small>Business outcome</small>
+            <strong>You keep more opportunities alive</strong>
+            More conversations, fewer lost customers, more booked jobs.
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <section>
+  <section id="problem">
     <div class="container">
       <div class="section-head">
-        <h2>The problem is simple.</h2>
+        <h2>The problem: speed decides who wins the job.</h2>
         <p>
-          If a homeowner needs service and your call goes unanswered, they rarely wait around.
-          They call the next number on Google. That means lost revenue from leads you already paid to attract.
+          Local service leads are high-intent and time-sensitive. If they do not hear back quickly, they move on. That
+          means missed revenue from leads you already paid for.
         </p>
       </div>
 
       <div class="grid-3">
         <div class="card">
-          <h3>Missed calls turn into missed revenue</h3>
-          <p>Most customers want help now. If they don’t hear back quickly, they move on fast.</p>
+          <h3>Missed calls become missed jobs</h3>
+          <p>If no one answers in the moment, many prospects call the next business on their list.</p>
         </div>
         <div class="card">
-          <h3>After-hours leads are easy to lose</h3>
-          <p>Calls after 5pm, during weekends, or while you’re on-site can disappear before you ever see them.</p>
+          <h3>Busy schedules create response gaps</h3>
+          <p>Field work, traffic, and after-hours requests make it hard to respond consistently.</p>
         </div>
         <div class="card">
-          <h3>Slow follow-up kills close rates</h3>
-          <p>Even interested leads go cold when there’s no immediate response.</p>
+          <h3>Slow follow-up weakens close rates</h3>
+          <p>Even strong leads cool off quickly when response time is delayed.</p>
         </div>
       </div>
     </div>
@@ -478,10 +483,8 @@
   <section id="how-it-works">
     <div class="container">
       <div class="section-head">
-        <h2>How AutoLeadHQ works.</h2>
-        <p>
-          We add a simple lead recovery layer to your business so missed calls can still turn into real conversations.
-        </p>
+        <h2>How it works</h2>
+        <p>A simple workflow that helps your team recover opportunities before they disappear.</p>
       </div>
 
       <div class="grid-2">
@@ -490,62 +493,62 @@
             <div class="step">
               <div class="num">1</div>
               <div>
-                <h3>Calls route through the system</h3>
-                <p>Your calls run through a business line setup so missed calls can be detected automatically.</p>
+                <h3>Connect your business line</h3>
+                <p>Calls run through your setup so missed inbound leads can be detected automatically.</p>
               </div>
             </div>
             <div class="step">
               <div class="num">2</div>
               <div>
-                <h3>Missed calls trigger instant follow-up</h3>
-                <p>The lead gets a fast text back, even if you’re tied up on another job.</p>
+                <h3>Trigger fast follow-up</h3>
+                <p>When a call is missed, the lead receives an immediate response so they are not left waiting.</p>
               </div>
             </div>
             <div class="step">
               <div class="num">3</div>
               <div>
-                <h3>You get a second chance at the booking</h3>
-                <p>The conversation stays alive instead of the lead disappearing to the next company.</p>
+                <h3>Convert more conversations</h3>
+                <p>Your team gets another chance to close the job instead of losing it to a competitor.</p>
               </div>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <h3>What you actually get</h3>
+          <h3>What you get</h3>
           <div class="pill-row">
-            <div class="pill">Missed call follow-up</div>
-            <div class="pill">After-hours response</div>
-            <div class="pill">Lead recovery system</div>
-            <div class="pill">More booked opportunities</div>
+            <div class="pill">Missed lead recovery</div>
+            <div class="pill">Faster first response</div>
+            <div class="pill">After-hours coverage</div>
+            <div class="pill">More booked work</div>
           </div>
-          <p style="margin-top:18px; color: var(--muted);">
-            This is not about selling you software for the sake of software. It’s about helping you stop losing jobs you should have had a real chance to close.
+          <p style="margin-top: 16px;">
+            The focus is simple: keep your pipeline from leaking and improve outcomes from the leads you already receive.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="benefits">
     <div class="container">
       <div class="section-head">
-        <h2>What this helps you do.</h2>
-        <p>Sell the outcome, not the tool.</p>
+        <h2>Benefits and outcomes</h2>
+        <p>Built to drive practical business results, not extra complexity.</p>
       </div>
 
       <div class="grid-3">
         <div class="card">
-          <h3>Recover leads you would have lost</h3>
-          <p>Get another shot at jobs that normally disappear after one missed call.</p>
+          <h3>Recover missed leads</h3>
+          <p>Capture opportunities that would have gone to another local provider.</p>
         </div>
         <div class="card">
-          <h3>Book more work without more ad spend</h3>
-          <p>Improve results from the leads you’re already getting instead of spending more just to replace lost ones.</p>
+          <h3>Respond faster at scale</h3>
+          <p>Give every inbound lead a timely response, even when your team is tied up.</p>
         </div>
         <div class="card">
-          <h3>Respond fast without hiring staff</h3>
-          <p>Give leads an instant response even when you’re busy, driving, or off the clock.</p>
+          <h3>Book more jobs</h3>
+          <p>Increase conversion from existing demand without increasing ad spend.</p>
         </div>
       </div>
     </div>
@@ -555,76 +558,85 @@
     <div class="container form-wrap">
       <div>
         <div class="section-head">
-          <h2>Start setup.</h2>
-          <p>
-            Fill this out and we’ll reach out with the next steps to get your lead recovery system live.
-          </p>
+          <h2>Get started</h2>
+          <p>Tell us about your business and we will follow up with next steps.</p>
         </div>
 
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <!--
+          FORM ENDPOINT SETUP:
+          Replace REPLACE_WITH_YOUR_FORM_ID in the form action URL below with your real Formspree ID.
+          Example: https://formspree.io/f/xblyabcd
+        -->
+        <form id="lead-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+          <!-- OPTIONAL: Replace this subject line with any email subject you want to receive from Formspree. -->
+          <input type="hidden" name="_subject" value="New AutoLeadHQ landing page inquiry" />
+
           <label>
-            Your name
-            <input type="text" name="name" placeholder="John Smith" required />
+            Full name
+            <input type="text" name="name" placeholder="Jordan Lee" required />
           </label>
 
           <label>
             Business name
-            <input type="text" name="business_name" placeholder="Smith HVAC" required />
+            <input type="text" name="business_name" placeholder="Lee Plumbing" required />
           </label>
 
           <label>
-            Best email
-            <input type="email" name="email" placeholder="owner@company.com" required />
+            Business email
+            <input type="email" name="email" placeholder="owner@business.com" required />
           </label>
 
           <label>
-            Best phone number
+            Phone number
             <input type="tel" name="phone" placeholder="(555) 555-5555" required />
           </label>
 
           <label>
-            Current setup
-            <select name="current_setup">
-              <option value="Business line separate">Business line separate from personal phone</option>
-              <option value="Business number is personal phone">Business number is my personal phone</option>
-              <option value="Not sure">Not sure</option>
+            Service type
+            <select name="service_type" required>
+              <option value="">Select one...</option>
+              <option>HVAC</option>
+              <option>Plumbing</option>
+              <option>Roofing</option>
+              <option>Electrical</option>
+              <option>Junk removal</option>
+              <option>Other local service business</option>
             </select>
           </label>
 
           <label>
             Anything we should know?
-            <textarea name="notes" placeholder="Optional: tell us how your calls are currently handled."></textarea>
+            <textarea name="notes" placeholder="Optional details about your current call or lead follow-up process."></textarea>
           </label>
 
-          <button class="btn btn-primary" type="submit">Request Setup</button>
-          <div class="form-note">
-            Replace <strong>YOUR_FORM_ID</strong> in the code with your Formspree form ID so submissions go to your email.
-          </div>
+          <button class="btn btn-primary" type="submit" id="submit-btn">Request Setup</button>
+          <p class="form-note">This form works on a static GitHub Pages site through Formspree.</p>
+          <p id="submit-status" class="submit-status" role="status" aria-live="polite"></p>
         </form>
       </div>
 
       <div class="card">
         <h3>What happens after you submit?</h3>
-        <div class="steps" style="margin-top:16px;">
+        <div class="steps" style="margin-top: 14px;">
           <div class="step">
             <div class="num">1</div>
             <div>
-              <h3>We review your info</h3>
-              <p>We check your business details and the best way to get your setup live.</p>
+              <h3>We review your setup</h3>
+              <p>We look at how inbound calls are currently handled in your business.</p>
             </div>
           </div>
           <div class="step">
             <div class="num">2</div>
             <div>
-              <h3>We send next steps</h3>
-              <p>You’ll get a quick email with what’s needed to move forward.</p>
+              <h3>You get a clear plan</h3>
+              <p>We send straightforward next steps for getting your lead recovery process live.</p>
             </div>
           </div>
           <div class="step">
             <div class="num">3</div>
             <div>
-              <h3>Your system gets built</h3>
-              <p>Once everything is confirmed, your missed call follow-up system gets set up for you.</p>
+              <h3>You start capturing more jobs</h3>
+              <p>Your team responds faster and keeps more inbound opportunities from slipping away.</p>
             </div>
           </div>
         </div>
@@ -632,24 +644,28 @@
     </div>
   </section>
 
-  <section>
+  <section id="faq">
     <div class="container">
       <div class="section-head">
-        <h2>Questions business owners usually have.</h2>
+        <h2>FAQ</h2>
       </div>
 
       <div class="faq">
         <details>
-          <summary>Do I need to hire anyone new?</summary>
-          <p>No. The point is to help you respond faster without adding more staff.</p>
+          <summary>Is this only for one trade?</summary>
+          <p>No. It is designed for local service businesses that rely on phone leads, including HVAC, plumbing, roofing, electrical, and more.</p>
         </details>
         <details>
-          <summary>Do I need to run more ads?</summary>
-          <p>No. This is about capturing more value from the calls you’re already getting.</p>
+          <summary>Do we need to add office staff to use this?</summary>
+          <p>No. The goal is to help your current team respond faster without adding headcount.</p>
         </details>
         <details>
-          <summary>Will this work if I’m on a job most of the day?</summary>
-          <p>That’s exactly when it helps most. Leads don’t have to wait for you to become available before hearing back.</p>
+          <summary>Will it still help if we are busy on jobs all day?</summary>
+          <p>Yes. That is exactly where fast automatic follow-up is most valuable.</p>
+        </details>
+        <details>
+          <summary>Can this run on GitHub Pages?</summary>
+          <p>Yes. This page is fully static and uses Formspree for form handling.</p>
         </details>
       </div>
     </div>
@@ -657,9 +673,50 @@
 
   <footer class="footer">
     <div class="container">
-      AutoLeadHQ · Recover missed HVAC leads and turn them into more booked jobs.<br />
-      Contact: <a href="mailto:max@autoleadhq.com">max@autoleadhq.com</a>
+      AutoLeadHQ · Helping local service businesses recover missed leads and book more jobs.<br />
+      <!-- Replace support@autoleadhq.com with your real contact email if needed. -->
+      Contact: <a href="mailto:support@autoleadhq.com">support@autoleadhq.com</a>
     </div>
   </footer>
+
+  <script>
+    const form = document.getElementById('lead-form');
+    const statusEl = document.getElementById('submit-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      statusEl.className = 'submit-status';
+      statusEl.textContent = '';
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          form.reset();
+          statusEl.textContent = 'Thanks — your request was submitted successfully. We will reach out shortly.';
+          statusEl.classList.add('success');
+        } else {
+          statusEl.textContent = 'We could not submit your request right now. Please try again or email us directly.';
+          statusEl.classList.add('error');
+        }
+      } catch (error) {
+        statusEl.textContent = 'Network error. Please try again in a moment.';
+        statusEl.classList.add('error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Request Setup';
+      }
+    });
+  </script>
 </body>
 </html>
