@@ -236,7 +236,14 @@
 
   <script>
     const API = 'https://qgwbrwqyeyvrilwemtvy.supabase.co/functions/v1';
-    const ref = new URLSearchParams(location.search).get('r') || '';
+    const qs = new URLSearchParams(location.search);
+    const ref = qs.get('r') || '';
+    const promo = qs.get('promo') || '';
+    if (promo) {
+      const n = document.createElement('p'); n.className = 'sub'; n.style.color = '#ff7a2f'; n.style.fontWeight = '700';
+      n.textContent = 'Your one-time setup fee is waived. You only pay the monthly price.';
+      document.querySelector('#get-started .sub').after(n);
+    }
 
     // Sign-up -> Stripe Checkout
     const form = document.getElementById('lead-form');
@@ -246,7 +253,7 @@
       const btn = form.querySelector('button'); btn.disabled = true;
       msg.textContent = 'One moment...';
       try {
-        const body = Object.fromEntries(new FormData(form)); body.ref = ref;
+        const body = Object.fromEntries(new FormData(form)); body.ref = ref; body.promo = promo;
         const r = await fetch(API + '/alhq-onboard?route=signup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
         const j = await r.json();
         if (j.url) { location.href = j.url; return; }
