@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Welcome | AutoLeadHQ</title><meta name="robots" content="noindex" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" /><link rel="icon" href="/favicon.ico" sizes="any" /><link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script src="/a.js"></script>
+<style>
+  :root { --ink:#12161c; --flame:#e8590c; --flame-2:#ff7a2f; --mute:#5b6470; --line:#e3ded3; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Barlow","Segoe UI",system-ui,sans-serif; background:#f7f5f0; color:#161a20; font-size:17px; line-height:1.5; }
+  header { background:var(--ink); color:#fff; padding:36px 0 30px; }
+  .wrap { width:min(680px, calc(100% - 32px)); margin:0 auto; }
+  h1 { font-family:"Barlow Condensed","Arial Narrow",sans-serif; text-transform:uppercase; font-size:42px; line-height:1; margin:0 0 10px; }
+  h1 em { color:var(--flame-2); font-style:normal; }
+  header p { color:#c9d1db; margin:0; }
+  form { background:#fff; border:1px solid var(--line); border-radius:16px; padding:22px; margin:22px 0 40px; }
+  h2 { font-size:19px; margin:18px 0 6px; }
+  h2:first-child { margin-top:0; }
+  label { display:block; font-weight:600; font-size:15px; margin:12px 0 0; }
+  small { display:block; color:var(--mute); font-weight:400; font-size:14px; }
+  input, select, textarea { width:100%; font:inherit; padding:11px 12px; border:1px solid #cfc8ba; border-radius:10px; margin-top:5px; background:#fff; }
+  textarea { min-height:76px; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:560px) { .row { grid-template-columns:1fr; } }
+  button { margin-top:20px; width:100%; height:52px; border:0; border-radius:12px; background:var(--flame); color:#fff; font-weight:700; font-size:17px; cursor:pointer; }
+  #msg { margin-top:12px; font-weight:600; }
+  .steps { background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px 22px; margin-top:22px; }
+  .steps ol { margin:6px 0 0; padding-left:20px; }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>You're in.<br /><em id="who">Payment received.</em></h1>
+  <p>2 minutes: tell us about your shop so your texts sound like you. Everything here is optional except the name your texts use.</p>
+</div></header>
+<main class="wrap">
+  <div class="steps"><strong>What happens next</strong>
+    <ol>
+      <li>We set up your shop's missed-call number. It arrives by text, usually within 1 business day, with the 2-minute call-forwarding step.</li>
+      <li>The phone carriers approve every business that texts customers. We file that for you with the details below; it usually takes a few business days.</li>
+      <li>Test it: call your shop line from another phone, let it ring out, and watch the text come in.</li>
+    </ol>
+  </div>
+  <form id="ob">
+    <h2>How your texts introduce you</h2>
+    <label>Name your texts use *<small>e.g. "Smith Heating &amp; Air"</small><input name="text_name" required maxlength="60" /></label>
+    <label>Hours someone can call customers back<small>e.g. Mon-Fri 7-5, emergencies 24/7</small><input name="hours" maxlength="200" /></label>
+    <div class="row">
+      <label>Service area<small>Towns or radius</small><input name="service_area" maxlength="200" /></label>
+      <label>Website<input name="website" maxlength="200" placeholder="https://" /></label>
+    </div>
+    <label>What you do (and don't do)<small>e.g. furnaces, AC, water heaters; no commercial</small><textarea name="services" maxlength="400"></textarea></label>
+    <label>Anything the texts should never say<textarea name="never_say" maxlength="400" placeholder="e.g. don't promise same-day service"></textarea></label>
+
+    <h2>Alerts</h2>
+    <div class="row">
+      <label>Cell for job alerts<input name="alert_cell" type="tel" maxlength="30" /></label>
+      <label>Email for job summaries (optional)<input name="alert_email" type="email" maxlength="120" /></label>
+    </div>
+
+    <h2>Your phone line</h2>
+    <label>Who provides your shop's phone line?<small>So we send the exact forwarding steps for it</small>
+      <select name="phone_provider">
+        <option value="">Not sure</option><option>Verizon</option><option>AT&amp;T</option><option>T-Mobile</option>
+        <option>Comcast Business / Xfinity</option><option>Spectrum</option><option>RingCentral</option><option>Google Voice</option>
+        <option>Other office phone system (VoIP)</option><option>Other landline</option>
+      </select></label>
+    <label>Shop number(s) customers call<input name="phone_numbers" maxlength="120" placeholder="(319) 555-0100" /></label>
+
+    <h2>For carrier texting approval</h2>
+    <label>Legal business name<small>As registered with the IRS / state</small><input name="legal_name" maxlength="120" /></label>
+    <div class="row">
+      <label>EIN (optional)<small>Speeds up approval; not shown to anyone</small><input name="ein" maxlength="20" inputmode="numeric" placeholder="12-3456789" /></label>
+      <label>Business address<input name="address" maxlength="200" /></label>
+    </div>
+    <label>Anything else we should know<textarea name="notes" maxlength="800"></textarea></label>
+    <button type="submit">Save my shop details</button>
+    <div id="msg" aria-live="polite"></div>
+  </form>
+</main>
+<script>
+  const API = 'https://qgwbrwqyeyvrilwemtvy.supabase.co/functions/v1/alhq-site';
+  const sId = new URLSearchParams(location.search).get('s') || '';
+  const f = document.getElementById('ob'), msg = document.getElementById('msg');
+  const T = (e, p) => { try { window.alhq && alhq.track(e, p); } catch {} };
+  T('onboard_view', {});
+  if (sId) fetch(API + '?route=onboard_get&s=' + encodeURIComponent(sId)).then(r => r.json()).then(j => {
+    if (j.error) return;
+    if (j.shop) { f.text_name.value = j.shop; document.getElementById('who').textContent = 'Welcome, ' + (j.name || j.shop) + '.'; }
+    if (j.cell) f.alert_cell.value = j.cell.replace(/^\+1(\d{3})(\d{3})(\d{4})$/, '($1) $2-$3');
+    if (j.done) msg.textContent = 'We already have your details. Saving again updates them.';
+  }).catch(() => {});
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!sId) { msg.textContent = 'Missing your sign-up link. Reply to your welcome email and we will sort it out.'; return; }
+    const b = f.querySelector('button'); b.disabled = true; msg.textContent = 'Saving...';
+    try {
+      const body = Object.fromEntries(new FormData(f)); body.s = sId;
+      const r = await fetch(API + '?route=onboard', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+      const j = await r.json();
+      if (j.ok) { T('onboard_submit', { provider: body.phone_provider || '', ein: body.ein ? 1 : 0 }); location.href = '/thanks/'; return; }
+      msg.textContent = j.error || 'Something went wrong. Please try again.';
+    } catch { msg.textContent = 'Something went wrong. Email support@autoleadhq.com.'; }
+    b.disabled = false;
+  });
+</script>
+</body>
+</html>

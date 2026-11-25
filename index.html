@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ab class="ab-wait">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AutoLeadHQ | Missed-call text-back for HVAC, plumbing &amp; mechanical contractors</title>
   <meta name="description" content="When your shop misses a call, AutoLeadHQ texts the customer back in seconds, keeps the conversation going, and sends you the job details. Built for HVAC, plumbing and mechanical contractors." />
   <meta property="og:title" content="Stop losing jobs to missed calls | AutoLeadHQ" />
-  <meta property="og:description" content="Missed-call text-back for HVAC, plumbing and mechanical contractors. Set up for you in a day." />
+  <meta property="og:description" content="Missed-call text-back for HVAC, plumbing and mechanical contractors. Keep your number. Set up for you." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#12161c" />
+  <script src="/a.js"></script>
   <style>
     :root {
       --ink: #12161c; --ink-2: #1b222b; --paper: #f7f5f0; --card: #ffffff; --line: #e3ded3;
@@ -83,6 +88,8 @@
     .price { font-size: 34px; font-weight: 800; margin: 6px 0 8px; }
     .price span { font-size: 16px; color: var(--mute); font-weight: 600; }
     footer { padding: 28px 0 40px; color: var(--mute); font-size: 14px; }
+    .ab-wait .hero h1, .ab-wait .hero .lead { visibility: hidden; }
+    .card .pick { margin-top: 14px; width: 100%; }
   </style>
 </head>
 <body>
@@ -95,10 +102,10 @@
 
   <header class="hero">
     <div class="wrap">
-      <h1 class="cond">Missed the call?<br /><em>Don't miss the job.</em></h1>
-      <p class="lead">When your shop can't pick up (tech on a roof, office closed, line busy), AutoLeadHQ texts the customer back within seconds, finds out what's wrong and where, and sends you the details. They don't call the next shop on Google.</p>
+      <h1 class="cond" id="hero-h">Missed the call?<br /><em>Don't miss the job.</em></h1>
+      <p class="lead" id="hero-sub">When your shop can't pick up (tech on a roof, office closed, line busy), AutoLeadHQ texts the customer back within seconds, finds out what's wrong and where, and sends you the details. They don't call the next shop on Google.</p>
       <div class="cta">
-        <a class="btn" href="#demo">Try it yourself (30 sec)</a>
+        <a class="btn" id="hero-cta" href="#demo">Try it yourself (30 sec)</a>
         <a class="btn ghost" href="#get-started">Get started</a>
       </div>
       <p class="note">Built for HVAC, plumbing and mechanical contractors. Keep your number. Nothing to install.</p>
@@ -160,18 +167,18 @@
   <section id="pricing">
     <div class="wrap">
       <h2 class="cond">Pricing</h2>
-      <p class="sub">Month to month, cancel anytime with one email. Your number and texts are set up automatically the moment you sign up.</p>
+      <p class="sub">Month to month, cancel anytime. We set up your number and texts for you after you sign up.</p>
       <div class="grid3">
-        <div class="card"><h3>Starter</h3><div class="price">$597<span>/mo</span></div><p>+ $497 one-time setup<br />1 business line, text-back in seconds, AI follow-up to get the problem, address and callback time, every reply sent to your cell.</p></div>
-        <div class="card"><h3>Growth</h3><div class="price">$997<span>/mo</span></div><p>+ $497 one-time setup<br />Everything in Starter for up to 3 lines or locations.</p></div>
-        <div class="card"><h3>Scale</h3><div class="price">$1,797<span>/mo</span></div><p>+ $997 one-time setup<br />Everything in Growth for multi-location shops, with custom text wording per location.</p></div>
+        <div class="card"><h3>Starter</h3><div class="price">$597<span>/mo</span></div><p>+ $497 one-time setup<br />1 business line, text-back in seconds, AI follow-up to get the problem, address and callback time, every reply sent to your cell.</p><button class="btn pick" data-plan="starter" type="button">Choose Starter</button></div>
+        <div class="card"><h3>Growth</h3><div class="price">$997<span>/mo</span></div><p>+ $497 one-time setup<br />Everything in Starter for up to 3 lines or locations.</p><button class="btn pick" data-plan="growth" type="button">Choose Growth</button></div>
+        <div class="card"><h3>Scale</h3><div class="price">$1,797<span>/mo</span></div><p>+ $997 one-time setup<br />Everything in Growth for multi-location shops, with custom text wording per location.</p><button class="btn pick" data-plan="scale" type="button">Choose Scale</button></div>
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap grid3">
-      <div class="card"><h3>Done for you</h3><p>Your number and messages are set up automatically when you sign up. You turn on one forwarding setting and you're live. Nothing to log into.</p></div>
+      <div class="card"><h3>Done for you</h3><p>We set up your number and messages for you. You turn on one forwarding setting on your phone. Nothing to log into.</p></div>
       <div class="card"><h3>Sounds like your shop</h3><p>The texts use your business name and your wording. It never quotes prices or promises a time. That stays your call.</p></div>
       <div class="card"><h3>Safety first</h3><p>If a customer mentions a gas smell, a CO alarm or flooding, the text tells them to call 911 or the gas company right away.</p></div>
     </div>
@@ -185,7 +192,7 @@
       </div>
       <div class="card">
         <h3>What you get</h3>
-        <p>A local number for your shop, missed-call forwarding set up, a text-back within seconds, a short text conversation to get the job details, every reply sent to your cell, and a monthly report of the calls you would have lost.</p>
+        <p>A local number for your shop, missed-call forwarding set up, a text-back within seconds, a short text conversation to get the job details, and every reply sent to your cell.</p>
       </div>
     </div>
   </section>
@@ -245,18 +252,48 @@
       document.querySelector('#get-started .sub').after(n);
     }
 
+    const T = (e, p) => { try { window.alhq && alhq.track(e, p); } catch {} };
+
+    // A/B tests: headline, subtext, button, section order (see exp_arms in the database)
+    if (window.alhq) alhq.ready.then((a) => {
+      const hero = a.site_hero && a.site_hero.config;
+      if (hero) {
+        if (hero.headline) document.getElementById('hero-h').textContent = hero.headline;
+        if (hero.sub) document.getElementById('hero-sub').textContent = hero.sub;
+        if (hero.cta) document.getElementById('hero-cta').textContent = hero.cta;
+      }
+      const lay = a.site_layout && a.site_layout.config && a.site_layout.config.order;
+      const after = document.querySelector('header.hero');
+      if (lay === 'demo_first') after.after(document.getElementById('demo'));
+      if (lay === 'pricing_first') after.after(document.getElementById('pricing'));
+    });
+
+    // Plan buttons fill in the form
+    document.querySelectorAll('.pick').forEach((b) => b.addEventListener('click', () => {
+      form.plan.value = b.dataset.plan;
+      T('plan_click', { plan: b.dataset.plan });
+      document.getElementById('get-started').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => form.name.focus({ preventScroll: true }), 600);
+    }));
+
     // Sign-up -> Stripe Checkout
     const form = document.getElementById('lead-form');
     const msg = document.getElementById('form-msg');
+    let formStarted = false;
+    form.addEventListener('focusin', () => { if (!formStarted) { formStarted = true; T('form_start', {}); } });
+    form.plan.addEventListener('change', () => T('plan_click', { plan: form.plan.value, via: 'select' }));
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('button'); btn.disabled = true;
       msg.textContent = 'One moment...';
       try {
-        const body = Object.fromEntries(new FormData(form)); body.ref = ref; body.promo = promo;
+        const body = Object.fromEntries(new FormData(form)); body.ref = ref || (window.alhq && alhq.ref) || ''; body.promo = promo;
+        body.visitor_id = window.alhq ? alhq.vid : '';
+        T('signup_submit', { plan: body.plan, trade: body.trade });
         const r = await fetch(API + '/alhq-onboard?route=signup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
         const j = await r.json();
-        if (j.url) { location.href = j.url; return; }
+        if (j.url) { T('checkout_redirect', { plan: body.plan }); if (window.alhq) alhq.flush(); location.href = j.url; return; }
+        if (!j.ok) T('signup_error', { error: String(j.error || '').slice(0, 80) });
         if (j.ok) { form.reset(); msg.textContent = "Thanks, you're on the list. Your secure checkout link is coming by email shortly."; }
         else msg.textContent = j.error || 'Something went wrong. Please try again.';
       } catch { msg.textContent = 'Something went wrong. Email support@autoleadhq.com.'; }
@@ -285,6 +322,8 @@
     dForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const t = dMsg.value.trim(); if (!t) return;
+      if (!started) T('demo_start', { shop_named: shopIn.value.trim() ? 1 : 0 });
+      T('demo_message', { len: t.length });
       started = true; shopIn.disabled = true; dMsg.value = '';
       bubble(t, 'me');
       const typing = bubble('typing...', 'shop'); typing.classList.add('typing');
@@ -292,7 +331,7 @@
         const r = await fetch(API + '/alhq-twilio?route=webdemo', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ session, shop: shopIn.value, ref, message: t }) });
         const j = await r.json();
         typing.remove(); bubble(j.reply || j.error || 'Demo is busy, try again in a minute.', 'shop');
-        if (j.done) dMsg.disabled = true;
+        if (j.done) { dMsg.disabled = true; T('demo_done', {}); }
       } catch { typing.remove(); bubble('Demo is busy, try again in a minute.', 'shop'); }
     });
   </script>
