@@ -35,7 +35,9 @@
   var ready = !wantsArms ? Promise.resolve({}) : new Promise(function (resolve) {
     var done = false;
     function finish(x) { if (done) return; done = true; document.documentElement.classList.remove('ab-wait'); resolve(x || {}); }
-    setTimeout(function () { finish({}); }, 900);  // never hold the page up
+    // Show the page after 1.2s at most; a slow answer is still applied up to 3s so the stats match what was shown.
+    setTimeout(function () { document.documentElement.classList.remove('ab-wait'); }, 1200);
+    setTimeout(function () { finish({}); }, 3000);
     fetch(API + '?route=arms&v=' + encodeURIComponent(vid)).then(function (r) { return r.json(); })
       .then(function (j) { var x = (j && j.arms) || {}; for (var k in x) arms[k] = x[k]; finish(x); })
       .catch(function () { finish({}); });
