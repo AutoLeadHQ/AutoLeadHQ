@@ -11,6 +11,8 @@
   ref = qs.get('r') || '';
   try { if (ref) localStorage.setItem('alhq_r', ref); else ref = localStorage.getItem('alhq_r') || ''; } catch (e) {}
 
+  var internal = false;  // visit autoleadhq.com/?internal=1 once on your own devices so your visits don't count
+  try { if (qs.get('internal') === '1') localStorage.setItem('alhq_internal', '1'); if (qs.get('internal') === '0') localStorage.removeItem('alhq_internal'); internal = localStorage.getItem('alhq_internal') === '1'; } catch (e) {}
   var queue = [], arms = {}, timer = null;
   function flush() {
     if (!queue.length) return;
@@ -21,6 +23,7 @@
     if (!sent) { try { fetch(API + '?route=track', { method: 'POST', body: body, keepalive: true, headers: { 'content-type': 'text/plain' } }); } catch (e) {} }
   }
   function track(event, props) {
+    if (internal) return;
     var p = {}; props = props || {};
     for (var k in props) p[k] = props[k];
     for (var a in arms) p['ab_' + a] = arms[a].name;
